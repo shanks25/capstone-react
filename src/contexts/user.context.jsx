@@ -1,13 +1,13 @@
-import { createContext, useState, useEffect } from "react";
-import {
-  createUserDocumentFromAuth,
-  onAuthStateChangedListener,
-} from "../utlis/firebase/firebase.utils";
+import { createContext, useState, useEffect } from 'react';
 
-// as the actual value you want to access
+import {
+  onAuthStateChangedListener,
+  createUserDocumentFromAuth,
+} from '../utils/firebase/firebase.utils';
+
 export const UserContext = createContext({
-  currentUser: null,
   setCurrentUser: () => null,
+  currentUser: null,
 });
 
 export const UserProvider = ({ children }) => {
@@ -20,8 +20,8 @@ export const UserProvider = ({ children }) => {
         createUserDocumentFromAuth(user);
       }
       setCurrentUser(user);
-      console.log(user);
     });
+
     return unsubscribe;
   }, []);
 
